@@ -10,6 +10,122 @@
     <link rel="stylesheet" href="assets/css/Nunito%20Sans.css?h=dca9af2b6be00a6cd9ac5feb2a159731">
     <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons.css?h=befd8a398792e305b7ffd4a176b5b585">
     <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .filter-input {
+            font-weight: bold;
+            text-shadow: 0px 0px;
+            border: solid 1px #ccc;
+            border-radius: 10px;
+            padding: 8px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            border-radius: 10px;
+            padding: 8px 16px;
+        }
+
+        .clear-filter {
+            margin-left: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .filter-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .filter-input {
+                min-width: auto;
+            }
+        }
+
+        .card {
+            width: 18rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            color: #061f29;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            flex: 1; /* Takes up remaining space */
+        }
+
+        .card-title {
+            font-size: 1.0em;
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-text {
+            color: #888;
+            margin: 0;
+            text-align: right;
+        }
+
+        /* Ensure the link takes the full size of the card */
+        .card a {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            /* Flex container to ensure the card body takes up remaining space */
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between; /* Distributes space between title and price */
+        }
         html, body {
             height: 100%;
             margin: 0;
@@ -42,41 +158,39 @@
                     </svg></span><span style="font-weight: bold;">ZAIN STORE</span></a><button data-bs-toggle="collapse" data-bs-target="#navcol-2" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html" style="font-weight: bold;">PRODUCT</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="cart.html" style="font-weight: bold;">CART</a></li>
-                </ul>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-4">
-                <ul class="navbar-nav mx-auto"></ul><a class="btn btn-primary" role="button" style="border-radius: 20px;" href="cart.html">Show cart</a>
-            </div>
+                    <li class="nav-item"><a class="nav-link active" href="" style="font-weight: bold;">Product</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="cart.html" style="font-weight: bold;">Cart</a></li>
 
+                </ul>
+                <div class="collapse navbar-collapse" id="navcol-4">
+                    <ul class="navbar-nav mx-auto"></ul><a class="btn btn-primary" role="button" style="border-radius: 20px;" href="cart.html">Show cart</a>
+                </div>
+            </div>
         </div>
     </nav><!-- End: Navbar With Button -->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6">
-                    <img id="productImage" class="card-img-top mb-5 mb-md-0" src="" alt="Product Image" />
-                </div>
-                <div class="col-md-6">
-                    <div class="small mb-1" id="productSKU">SKU: </div>
-                    <h1 class="display-5 fw-bolder" id="productTitle"></h1>
-                    <div class="fs-5 mb-5">
-                        <span id="productOldPrice" class="text-decoration-line-through"></span>
-                        <span id="productPrice"></span>
-                    </div>
-                    <p class="lead" id="productDescription"></p>
-                    <div class="d-flex">
-                        <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 5rem" />
-                        <button id="addToCartButton" class="btn btn-outline-dark flex-shrink-0" type="button">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="filter-group">
+            <input type="text" id="searchInput" class="filter-input" placeholder="Search by title">
+            <input type="number" id="minPriceInput" class="filter-input" placeholder="Minimum price">
+            <input type="number" id="maxPriceInput" class="filter-input" placeholder="Maximum price">
+            <select id="categoryInput" class="filter-input">
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="jewelery">Jewelery</option>
+                <option value="men's clothing">Men's Clothing</option>
+                <option value="women's clothing">Women's Clothing</option>
+            </select>
         </div>
-    </section>
+        <div class="button-group">
+            <button id="filterButton" class="btn btn-primary">Filter</button>
+            <button id="clearFilterButton" class="btn btn-primary">Clear Filter</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1 style="font-weight: bold;margin-top: 20px;">PRODUCTS</h1>
+        <div id="product-list" style="display: flex ;flex-flow: row wrap;gap: 35px;padding-left: 20px;padding-top: 10px">
+        </div>
+    </div>
 </div>
 <footer class="text-center " style="margin-top: 90px;background: #1a1a1a">
     <div class="container text-white py-4 py-lg-5">
@@ -100,7 +214,6 @@
         <p class="text-muted mb-0">Copyright © 2024 Zain Store</p>
     </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.reflowhq.com/v2/toolkit.min.js" data-reflow-project="1593310671" data-testmode="true"></script>
 <script src="assets/js/bs-init.js?h=4f6030575bc01c04c2cd8963f3a0d244"></script>
