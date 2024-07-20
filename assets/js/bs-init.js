@@ -196,21 +196,21 @@ function displayCartItems() {
                     <h6 class="mb-0">${product.title}</h6>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-    <button class="btn btn-link px-1" onclick="updateQuantity('${item.id}', -1)" style="text-decoration: none;font-size: 20px">
-        -
-    </button>
-    <input
-        min="0"
-        name="quantity"
-        value="${item.quantity}"
-        type="number"
-        class="form-control form-control-sm"
-        style="max-width: 5rem; text-align: center;"
-        readonly
-    />
-    <button class="btn btn-link px-1" onclick="updateQuantity('${item.id}', 1)" style="text-decoration: none">
-        +
-    </button>
+    			<button class="btn btn-link px-1" onclick="updateQuantity('${item.id}', -1)" style="text-decoration: none;font-size: 20px">
+        			-
+    			</button>
+    			<input
+        			min="0"
+        			name="quantity"
+        			value="${item.quantity}"
+        			type="number"
+        			class="form-control form-control-sm"
+        			style="max-width: 5rem; text-align: center;"
+        			readonly
+    			/>
+    			<button class="btn btn-link px-1" onclick="updateQuantity('${item.id}', 1)" style="text-decoration: none">
+        			+
+    			</button>
                 </div>
                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                     <h6 class="mb-0">€ ${productTotalPrice.toFixed(2)}</h6>
