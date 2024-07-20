@@ -1,7 +1,7 @@
 # Fasion E-commerce Website Project
 
 This project is a simple e-commerce website built with HTML and Bootstrap. The project includes the following HTML pages:
-https://zainmo11.github.io/NTI_TASK/
+(https://zainmo11.github.io/Ecommerce-front-end-demo/)
 - index.html: The main landing page of the e-commerce website.
 - product.html: The product listing and details page.
 - cart.html: The shopping cart page where users can view and manage their selected products.
